@@ -1,0 +1,187 @@
+<!-- The hamburger button -->
+<button class="hamburger-btn" onclick="toggleOptions()" title="Accessibility Menu">Accessibility menu ☰</button>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+<br>
+<br>
+<br>
+
+<br>
+<br>
+<br>
+<h1>Welcome</h1>
+<p> hheyyyyyy</p>
+<!-- The options -->
+<ul class="options-list hidden">
+    <br>
+<br>
+<br>
+
+<br>
+
+<br>
+ 
+
+  <button id="font-increase-btn" style="background-color: rgb(157, 157, 228);"  class="btn btn-light">Increase Font Size</button>
+  <button id="font-decrease-btn" style="background-color: rgb(157, 157, 228);" class="btn btn-light">Decrease Font Size</button>
+  <div class="mt-3">
+    <input type="range" min="0" max="200" value="100" class="slider" id="range"> slide to adjust the brightness
+  </div>
+</ul>
+<style>
+
+    /* Styling for the hamburger button */
+.hamburger-btn {
+    position: absolute;
+        top: 10px;
+        right: 10px;
+        z-index: 999;
+        font-size: 20px;
+        background-color: transparent;
+        color: #000;
+        border: none;
+        cursor: pointer;
+}
+
+/* Styling for the options list */
+.options-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  background-color: #e8e8e8;
+  border: 1px solid #ddd;
+  position: absolute;
+  top: 40px;
+  right: 20px;
+  width: 400px;
+  height: 500px;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+  z-index: 1;
+  overflow-y: auto;
+  font-size: 20px;
+  line-height: 1.5;
+  color: #333;
+  text-align: center;
+  font-family: Arial, sans-serif;
+  border-radius: 10px;
+
+
+}
+
+.options-list li {
+  margin: 0;
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+}
+
+.options-list li:last-child {
+  border-bottom: none;
+}
+
+.options-list li a {
+  color: #333;
+  text-decoration: none;
+}
+
+.options-list li a:hover {
+  color: #fff;
+  background-color: #333;
+}
+
+#font-increase-btn,
+#font-decrease-btn {
+  display: block;
+  margin: 10px;
+  padding: 10px;
+  border: none;
+  border-radius: 4px;
+  color: #fff;
+  font-weight: bold;
+  text-align: center;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+#font-increase-btn {
+  background-color: #4caf50;
+}
+
+#font-decrease-btn {
+  background-color: #f44336;
+}
+
+#font-increase-btn:hover,
+#font-decrease-btn:hover {
+  opacity: 0.8;
+}
+
+
+/* Styling for the hidden options list */
+.hidden {
+  display: none;
+}
+
+</style>
+
+<script>
+const button = document.getElementById("font-increase-btn");
+
+
+
+button.addEventListener("click", () => {
+  const label = button.innerText;
+  speak(label);
+});
+
+function speak(text) {
+  const speech = new SpeechSynthesisUtterance();
+  speech.text = text;
+  window.speechSynthesis.speak(speech);
+}
+
+
+
+const button2 = document.getElementById("font-decrease-btn");
+button2.addEventListener("click", () => {
+  const label = button2.innerText;
+  speak(label);
+});
+
+function speak(text) {
+  const speech = new SpeechSynthesisUtterance();
+  speech.text = text;
+  window.speechSynthesis.speak(speech);
+}
+
+var fontSize = 16; // initial font size
+  var maxFontSize = 100; // maximum font size
+  var minFontSize = 12; // minimum font size
+
+  document.getElementById("font-increase-btn").addEventListener("click", function() {
+    if (fontSize < maxFontSize) {
+      fontSize += 2; // increase font size by 2
+      document.body.style.fontSize = fontSize + "px";
+      document.getElementById("middle-panel").classList.add("large"); // Add the "large" class to the middle panel to increase its size
+    }
+  });
+
+  document.getElementById("font-decrease-btn").addEventListener("click", function() {
+    if (fontSize > minFontSize) {
+      fontSize -= 2; // decrease font size by 2
+      document.body.style.fontSize = fontSize + "px";
+      if (fontSize <= minFontSize) {
+        document.getElementById("middle-panel").classList.remove("large"); // Remove the "large" class from the middle panel to decrease its size
+      }
+    }
+  });
+function toggleOptions() {
+  var optionsList = document.querySelector(".options-list");
+  optionsList.classList.toggle("hidden");
+}
+
+</script>
